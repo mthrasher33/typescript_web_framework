@@ -1,5 +1,11 @@
 import { User } from './models/User';
-import axios from 'axios';
 
-const user = new User({ name: 'new records', age: 0 });
-user.save();
+const user = new User({ name: 'new record', age: 0 });
+
+console.log(user.get('name'));
+
+user.on('change', () => {
+  console.log('User was changed, we probably need to update some HTML');
+});
+
+user.set({ name: 'New name' });
